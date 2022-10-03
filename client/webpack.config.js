@@ -1,5 +1,6 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const WebpackPwaManifest = require("webpack-pwa-manifest");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const path = require("path");
 const { InjectManifest } = require("workbox-webpack-plugin");
 
@@ -21,7 +22,7 @@ module.exports = () => {
       // TODO: Add and configure workbox plugins for a service worker and manifest file.
       // Manifest File
       new InjectManifest({
-        swSrc: "./src/sw.js",
+        swSrc: "./src-sw.js",
         swDest: "service-worker.js",
       }),
       // Service Worker
@@ -48,11 +49,17 @@ module.exports = () => {
         //   },
         // ],
       }),
+      new MiniCssExtractPlugin(),
     ],
     // TODO: Add CSS loaders and babel to webpack.
     module: {
       rules: [
         // CSS loader
+        {
+          test: /\.css$/i,
+          use: [MiniCssExtractPlugin.loader, "css-loader"],
+        },
+        // Babel
         {
           test: /\.m?js$/,
           exclude: /(node_modules|bower_components)/,
@@ -62,11 +69,6 @@ module.exports = () => {
               presets: ["@babel/preset-env"],
             },
           },
-        },
-        // Babel
-        {
-          test: /\.css$/i,
-          use: [MiniCssExtractPlugin.loader, "css-loader"],
         },
       ],
     },
