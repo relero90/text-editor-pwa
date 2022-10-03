@@ -19,10 +19,12 @@ module.exports = () => {
         template: "./index.html",
       }),
       // TODO: Add and configure workbox plugins for a service worker and manifest file.
+      // Manifest File
       new InjectManifest({
         swSrc: "./src/sw.js",
         swDest: "service-worker.js",
       }),
+      // Service Worker
       new WebpackPwaManifest({
         name: "Just Another Text Editor",
         short_name: "J.A.T.E.",
@@ -50,6 +52,7 @@ module.exports = () => {
     // TODO: Add CSS loaders and babel to webpack.
     module: {
       rules: [
+        // CSS loader
         {
           test: /\.m?js$/,
           exclude: /(node_modules|bower_components)/,
@@ -60,6 +63,7 @@ module.exports = () => {
             },
           },
         },
+        // Babel
         {
           test: /\.css$/i,
           use: [MiniCssExtractPlugin.loader, "css-loader"],
