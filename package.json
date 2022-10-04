@@ -1,14 +1,14 @@
 {
   "name": "JATE",
   "version": "1.0.0",
-  "description": "",
+  "description": "A text editor progressive web app",
   "main": "server.js",
   "scripts": {
-    "start:dev": "concurrently \"cd client && npm run build\" \"cd server && npm run server\" ",
+    "start:dev": "concurrently \"cd client && npm run build\" \"cd server && nodemon server.js\" ",
     "start": "npm run build && cd server && node server.js",
     "server": "cd server node server.js --ignore client",
     "build": "cd client && npm run build",
-    "install": "cd server && npm i && cd ../client && npm i",
+    "install": "concurrently \"cd server && npm i\" \"cd client && npm i\" ",
     "client": "cd client && npm start"
   },
   "keywords": [],

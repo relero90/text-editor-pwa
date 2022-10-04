@@ -2,7 +2,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const WebpackPwaManifest = require("webpack-pwa-manifest");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const path = require("path");
-const { InjectManifest } = require("workbox-webpack-plugin");
+const { GenerateSW, InjectManifest } = require("workbox-webpack-plugin");
 
 module.exports = () => {
   return {
@@ -20,12 +20,12 @@ module.exports = () => {
         template: "./index.html",
       }),
       // TODO: Add and configure workbox plugins for a service worker and manifest file.
-      // Manifest File
+      //  service worker
       new InjectManifest({
-        swSrc: "./src-sw.js",
+        swSrc: "./src/js/sw.js",
         swDest: "service-worker.js",
       }),
-      // Service Worker
+      // Manifest File
       new WebpackPwaManifest({
         name: "Just Another Text Editor",
         short_name: "J.A.T.E.",
@@ -69,6 +69,10 @@ module.exports = () => {
               presets: ["@babel/preset-env"],
             },
           },
+        },
+        {
+          test: /\.(png|svg|jpg|jpeg|gif)$/i,
+          type: "asset/resource",
         },
       ],
     },
