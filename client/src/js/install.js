@@ -4,18 +4,28 @@ const installBtn = document.getElementById("buttonInstall");
 // TODO: Add an event handler to the `beforeinstallprompt` event
 window.addEventListener("beforeinstallprompt", (event) => {
   event.preventDefault();
-  installBtn.style.visibility = "visible";
-  textHeader.textContent = "Click the button to install!";
+  window.deferredPrompt = event;
+  installBtn.classList.toggle("hidden", false);
 });
 
 // TODO: Implement a click event handler on the `installBtn` element
 installBtn.addEventListener("click", async (event) => {
-  event.prompt();
+  const promptEvent = window.deferredPrompt;
+
+  if (!promptEvent) {
+    return;
+  }
+
+  promptEvent.prompt();
+
+  window.deferredPrompt = null;
+
+  installBtn.classList.toggle("hidden", true);
   installBtn.setAttribute("disabled", true);
-  installBtn.textContent = "Installed!";
 });
 
 // TODO: Add an handler for the `appinstalled` event
 window.addEventListener("appinstalled", (event) => {
-  console.log("👍", "appinstalled", event);
+  console.log("App installed!", event);
+  window.deferredPrompt = null;
 });
