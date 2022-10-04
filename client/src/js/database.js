@@ -18,8 +18,8 @@ export const putDb = async (content) => {
   const jateDb = await openDB("jate", 1);
   const tx = jateDb.transaction("jate", "readwrite");
   const store = tx.objectStore("jate"); //objectStore not found
-  const result = await store.add({ text: content });
-  console.log("Data saved to the database", result);
+  const result = await store.put({ id: 1, value: content });
+  console.log("PUT data in database:", result);
 };
 
 // TODO: Add logic for a method that gets all the content from the database

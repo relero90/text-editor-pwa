@@ -2,7 +2,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const WebpackPwaManifest = require("webpack-pwa-manifest");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const path = require("path");
-const { GenerateSW, InjectManifest } = require("workbox-webpack-plugin");
+const { InjectManifest } = require("workbox-webpack-plugin");
 
 module.exports = () => {
   return {
@@ -29,9 +29,20 @@ module.exports = () => {
       new WebpackPwaManifest({
         name: "Just Another Text Editor",
         short_name: "J.A.T.E.",
+        fingerprints: false,
+        inject: false,
         description: "Takes notes with JavaScript syntax highlighting!",
         background_color: "#ffffff",
         crossorigin: "use-credentials",
+        start_url: "./",
+        publicPath: "./",
+        icons: [
+          {
+            src: path.resolve("./src/images/logo.png"),
+            sizes: [96, 128, 192, 256, 384, 512],
+            destination: path.join("src", "images"),
+          },
+        ],
       }),
       new MiniCssExtractPlugin(),
     ],
