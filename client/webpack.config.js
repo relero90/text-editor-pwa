@@ -22,8 +22,8 @@ module.exports = () => {
       // TODO: Add and configure workbox plugins for a service worker and manifest file.
       //  service worker
       new InjectManifest({
-        swSrc: "./src/js/sw.js",
-        swDest: "service-worker.js",
+        swSrc: "./src-sw.js",
+        swDest: "src-sw.js",
       }),
       // Manifest File
       new WebpackPwaManifest({
