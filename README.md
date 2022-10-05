@@ -18,7 +18,7 @@ This is an installable text editor app that works to save notes or code snippets
 
 ---
 
-To install the text editor, navigate to the [deployed application link](https://infinite-spire-70588.herokuapp.com/) in your web browser. Click the black "Install" button in the top left corner of your viewport and follow the prompts.
+To install the text editor, navigate to the [deployed application link](https://jate90.herokuapp.com/) in your web browser. Click the black "Install" button in the top left corner of your viewport and follow the prompts.
 
 To uninstall, from the text editor window, click on the triple-dot stack in the top right corner. Select "Uninstall Just Another Text Editor..." and follow prompts to uninstall.
 
