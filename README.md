@@ -6,6 +6,8 @@
 
 This is an installable text editor app that works to save notes or code snippets with or without an internet connection.
 
+![A screenshot of the text editor showing the installed app with some notes saved](./assets/images/jate-screenshot.png)
+
 ## Table of Contents
 
 ---
